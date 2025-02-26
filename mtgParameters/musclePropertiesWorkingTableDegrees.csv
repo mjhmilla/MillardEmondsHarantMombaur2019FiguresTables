@@ -1,0 +1,23 @@
+name                       ,tiso   ,    wmax,  theta^A_0,theta^A_w,tvWmaxE, tvHalfWmaxC, theta^P_0, theta^P_1
+HipExtension               ,176,517,61,61,1.1,0.16,45,90
+HipFlexion                 ,157,526,42,70,1.12,0.25,-5,-30
+KneeExtension              ,286,1101,54,29,1.13,0.12,115,155
+KneeFlexion                ,99,953,59,64,1.12,0.2,0,-10
+AnkleExtension             ,128,674,23,38,1.16,0.41,2,45
+AnkleFlexion               ,44,990,-11,35,1.27,0.11,-30,-60
+ShoulderExtension          ,127,931,123,105,1.1,0.25,162,204
+ShoulderFlexion            ,91,1093,51,74,1.23,0.25,-30,-60
+WristExtension             ,16,2094,89,80,1.17,0.12,60,90
+WristFlexion               ,39,2085,38,98,1.14,0.12,-45,-86
+ShoulderHorizontalAdduction,128,1034,48,73,1.26,0.21,90,130
+ShoulderHorizontalAbduction,95,1031,-16,136,1.23,0.22,-30,-60
+ShoulderInternalRotation   ,51,1116,-68,161,1.28,0.29,80,110
+ShoulderExternalRotation   ,44,1031,-38,114,1.36,0.23,-60,-90
+ElbowExtension             ,101,1037,19,207,1.37,0.19,0,-10
+ElbowFlexion               ,70,1057,94,75,1.32,0.19,120,150
+WristSupination            ,14,2031,-12,77,1.24,0.25,-45,-90
+WristPronation             ,13,1597,-12,57,1.39,0.21,45,90
+WristUlnarDeviation        ,31,1032,25,85,1.35,0.2,0,-30
+WristRadialDeviation       ,24,1247,-65,147,1.31,0.21,20,50
+LumbarExtension            ,688,458,89,66,1.1,0.15,18,78
+LumbarFlexion              ,212,1102,0,360,1.1,0.15,0,-45

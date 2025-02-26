@@ -1,0 +1,7 @@
+*.zip
+*.mat
+*.pdf
+*.fig
+*.tex
+*.asv
+*.~lock*
