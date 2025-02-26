@@ -4,6 +4,7 @@ This repository contains the data and scripts needed to generate Figure 5, Table
 
 M Millard, A.L. Emonds, M Harant, K Mombaur, A reduced muscle model and planar musculoskeletal model fit for the simulation of whole-body movements, Journal of Biomechanics, Volume 89, 2019, Pages 11-20, ISSN 0021-9290, https://doi.org/10.1016/j.jbiomech.2019.04.004.
 
+
 # Generating Publication Figures
 
 To generate the figures in Millard et al:
