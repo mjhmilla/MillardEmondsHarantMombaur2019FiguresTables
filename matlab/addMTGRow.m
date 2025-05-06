@@ -16,7 +16,7 @@ function figH = addMTGRow(figH,angleData1,angleColumns1,...
 
                            
 clr0 = [0.5,0.5,0.5];
-clr1 = clr0;%[1,0,0];
+clr1 = [1,0,0];
 clrGrid = [0.75,0.75,0.75];
 clr2 = [0,0,1];
 
@@ -398,7 +398,12 @@ subplot('Position',[plotLeft,plotBottom,plotWidth,plotHeight]);
            p0 = tatp1(i-1);
            p1 = tatp1(i);
 
-           fill([x0,x0,x1,x1,x0]',[0,p0,p1,0,0]',clrFill1,...
+           t0 = max(tatp1);
+           if(tauSign1 < 0)
+              t0 = min(tatp1); 
+           end
+
+           fill([x0,x0,x1,x1,x0]',[t0,p0,p1,t0,t0]',clrFill1,...
                 'EdgeColor',clrFill1EdgeColor,...
                 'LineWidth',lineWidthEdge);
            hold on;
@@ -412,7 +417,12 @@ subplot('Position',[plotLeft,plotBottom,plotWidth,plotHeight]);
            p1 = tatp2(i-1);
            p0 = tatp2(i);
 
-           fill([x0,x0,x1,x1,x0]',[0,p0,p1,0,0]',clrFill2,...
+           t0 = max(tatp2);
+           if(tauSign2 < 0)
+              t0 = min(tatp2); 
+           end           
+
+           fill([x0,x0,x1,x1,x0]',[t0,p0,p1,t0,t0]',clrFill2,...
                 'EdgeColor',clrFill2EdgeColor,...
                 'LineWidth',lineWidthEdge);
            hold on;
@@ -420,35 +430,35 @@ subplot('Position',[plotLeft,plotBottom,plotWidth,plotHeight]);
     end    
     %Plot infeasible areas under the passive curve
     %if(sum(clrFill2) < 3)
-    if(flag_series1Zero == 0)
-        for i=2:1:size(angleData1,1)
-           x0 = angleData1(i-1,idxJointAngle).*rad2deg;
-           x1 = angleData1(i,idxJointAngle).*rad2deg;
-
-           p0 = angleData1(i-1,idxTpMult).*(tiso1*tauSign1);
-           p1 = angleData1(i,idxTpMult).*(tiso1*tauSign1);
-
-           fill([x0,x0,x1,x1,x0]',[0,p0,p1,0,0]',clrFill2,...
-                'EdgeColor',clrFill2EdgeColor,...
-                'LineWidth',lineWidthEdge);
-           hold on;
-        end
-    end
+%     if(flag_series1Zero == 0)
+%         for i=2:1:size(angleData1,1)
+%            x0 = angleData1(i-1,idxJointAngle).*rad2deg;
+%            x1 = angleData1(i,idxJointAngle).*rad2deg;
+% 
+%            p0 = angleData1(i-1,idxTpMult).*(tiso1*tauSign1);
+%            p1 = angleData1(i,idxTpMult).*(tiso1*tauSign1);
+% 
+%            fill([x0,x0,x1,x1,x0]',[0,p0,p1,0,0]',clrFill2,...
+%                 'EdgeColor',clrFill2EdgeColor,...
+%                 'LineWidth',lineWidthEdge);
+%            hold on;
+%         end
+%     end
     %if(sum(clrFill1)<3)
-    if(flag_series2Zero == 0)
-        for i=2:1:size(angleData2,1)
-           x0 = angleData2(i-1,idxJointAngle).*rad2deg;
-           x1 = angleData2(i,idxJointAngle).*rad2deg;
-
-           p0 = angleData2(i-1,idxTpMult).*(tiso2*tauSign2);
-           p1 = angleData2(i,idxTpMult).*(tiso2*tauSign2);
-
-           fill([x0,x0,x1,x1,x0]',[0,p0,p1,0,0]',clrFill1,...
-                'EdgeColor',clrFill1EdgeColor,...
-                'LineWidth',lineWidthEdge);
-           hold on;
-        end    
-    end
+%     if(flag_series2Zero == 0)
+%         for i=2:1:size(angleData2,1)
+%            x0 = angleData2(i-1,idxJointAngle).*rad2deg;
+%            x1 = angleData2(i,idxJointAngle).*rad2deg;
+% 
+%            p0 = angleData2(i-1,idxTpMult).*(tiso2*tauSign2);
+%            p1 = angleData2(i,idxTpMult).*(tiso2*tauSign2);
+% 
+%            fill([x0,x0,x1,x1,x0]',[0,p0,p1,0,0]',clrFill1,...
+%                 'EdgeColor',clrFill1EdgeColor,...
+%                 'LineWidth',lineWidthEdge);
+%            hold on;
+%         end    
+%     end
 %     
     %Plot infeasible areas above the sum of the active and passive curves
     if(sum(clrFill0)<3 && flag_series1Zero == 0)
@@ -459,9 +469,9 @@ subplot('Position',[plotLeft,plotBottom,plotWidth,plotHeight]);
            p0 = tatp1(i-1);
            p1 = tatp1(i);
 
-           t0 = tauMax;
+           t0 = max(tatp1);
            if(tauSign1 < 0)
-              t0 = tauMin; 
+              t0 = min(tatp1); 
            end
 
            fill([x0,x0,x1,x1,x0]',[t0,p0,p1,t0,t0]',clrFill0,...
@@ -479,9 +489,9 @@ subplot('Position',[plotLeft,plotBottom,plotWidth,plotHeight]);
            p0 = tatp2(i-1);
            p1 = tatp2(i);
 
-           t0 = tauMax;
+           t0 = max(tatp2);
            if(tauSign2 < 0)
-              t0 = tauMin; 
+              t0 = min(tatp2); 
            end
 
            fill([x0,x0,x1,x1,x0]',[t0,p0,p1,t0,t0]',clrFill0,...
@@ -721,7 +731,9 @@ subplot('Position',[plotLeft2,plotBottom,plotWidth,plotHeight]);
            p0 = velData1(1,idxTvMult).*(tiso1*tauSign1);
            p1 = velData1(1,idxTvMult).*(tiso1*tauSign1);
 
-           fill([x0,x0,x1,x1,x0]',[0,p0,p1,0,0]',clrFill1,...
+           t0 = max(velData1(:,idxTvMult)).*(tiso1*tauSign1*1.5);
+
+           fill([x0,x0,x1,x1,x0]',[t0,p0,p1,t0,t0]',clrFill1,...
                 'EdgeColor',clrFill1EdgeColor,...
                 'LineWidth',lineWidthEdge);
            hold on;
@@ -735,7 +747,9 @@ subplot('Position',[plotLeft2,plotBottom,plotWidth,plotHeight]);
            p0 = velData2(1,idxTvMult).*(tiso2*tauSign2);
            p1 = velData2(1,idxTvMult).*(tiso2*tauSign2);
 
-           fill([x0,x0,x1,x1,x0]',[0,p0,p1,0,0]',clrFill2,...
+           t0 = max(velData2(:,idxTvMult)).*(tiso2*tauSign2*1.5);
+
+           fill([x0,x0,x1,x1,x0]',[t0,p0,p1,t0,t0]',clrFill2,...
                 'EdgeColor',clrFill2EdgeColor,...
                 'LineWidth',lineWidthEdge);
            hold on;
@@ -791,10 +805,9 @@ subplot('Position',[plotLeft2,plotBottom,plotWidth,plotHeight]);
            p0 = velData1(1,idxTvMult).*(tiso1*tauSign1);
            p1 = velData1(1,idxTvMult).*(tiso1*tauSign1);
 
-           t0 = tauMax;
-           if(tauSign1 < 0)
-              t0 = tauMin; 
-           end       
+      
+           t0 = max(velData1(:,idxTvMult)).*(tiso1*tauSign1*1.5);
+
 
            fill([x0,x0,x1,x1,x0]',[t0,p0,p1,t0,t0]',...
                clrFill0,'EdgeColor',clrFill0EdgeColor,...
@@ -816,11 +829,8 @@ subplot('Position',[plotLeft2,plotBottom,plotWidth,plotHeight]);
            p0 = velData2(1,idxTvMult).*(tiso2*tauSign2);
            p1 = velData2(1,idxTvMult).*(tiso2*tauSign2);
 
-           t0 = tauMax;
-           if(tauSign2 < 0)
-              t0 = tauMin; 
-           end       
-
+           t0 = max(velData2(:,idxTvMult)).*(tiso2*tauSign2*1.5);
+      
            fill([x0,x0,x1,x1,x0]',[t0,p0,p1,t0,t0]',...
                clrFill0,'EdgeColor',clrFill0EdgeColor,...
                'LineWidth',lineWidthEdge);
@@ -841,11 +851,8 @@ subplot('Position',[plotLeft2,plotBottom,plotWidth,plotHeight]);
            p0 = velData1(i-1,idxTvMult).*(tiso1*tauSign1);
            p1 = velData1(i,  idxTvMult).*(tiso1*tauSign1);
 
-           t0 = tauMax;
-           if(tauSign1 < 0)
-              t0 = tauMin; 
-           end       
-
+           t0 = max(velData1(:,idxTvMult)).*(tiso1*tauSign1*1.5);
+     
            fill([x0,x0,x1,x1,x0]',[t0,p0,p1,t0,t0]',...
                clrFill0,'EdgeColor',clrFill0EdgeColor,...
                'LineWidth',lineWidthEdge);
@@ -861,11 +868,8 @@ subplot('Position',[plotLeft2,plotBottom,plotWidth,plotHeight]);
            p0 = velData2(i-1,idxTvMult).*(tiso2*tauSign2);
            p1 = velData2(i,  idxTvMult).*(tiso2*tauSign2);
 
-           t0 = tauMax;
-           if(tauSign2 < 0)
-              t0 = tauMin; 
-           end       
-
+           t0 = max(velData2(:,idxTvMult)).*(tiso2*tauSign2*1.5);
+       
            fill([x0,x0,x1,x1,x0]',[t0,p0,p1,t0,t0]',...
                clrFill0,'EdgeColor',clrFill0EdgeColor,...
                'LineWidth',lineWidthEdge);
